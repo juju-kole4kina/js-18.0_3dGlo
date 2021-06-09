@@ -1,14 +1,14 @@
 window.addEventListener('DOMContentLoaded', () => {
    'use strict';
-   // Timer
-   const countTimer = (dedline) => {
+   // TIMER
+   const countTimer = deadline => {
       const timerHours = document.querySelector('#timer-hours'),
          timerMinutes = document.querySelector('#timer-minutes'),
          timerSecunds = document.querySelector('#timer-seconds');
       let idInterval = 0;
 
       const getTimeRemaining = () => {
-         const dateStop = new Date(dedline).getTime(),
+         const dateStop = new Date(deadline).getTime(),
             dateNow = new Date().getTime(),
             timeRemaining = (dateStop - dateNow) / 1000;
          let seconds = 0,
@@ -27,7 +27,7 @@ window.addEventListener('DOMContentLoaded', () => {
       };
 
       const updateClock = () => {
-         let timer = getTimeRemaining();
+         const timer = getTimeRemaining();
          timerHours.textContent = addZero(timer.hours);
          timerMinutes.textContent = addZero(timer.minutes);
          timerSecunds.textContent = addZero(timer.seconds);
@@ -39,6 +39,13 @@ window.addEventListener('DOMContentLoaded', () => {
 
       idInterval = setInterval(updateClock, 1000);
    };
+
+   //MENU
+
+   //MODAL WINDOW
+
+   //ANIMATON
+
 
    countTimer('10 june 2021');
 });
