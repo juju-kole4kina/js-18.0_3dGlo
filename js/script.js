@@ -21,6 +21,7 @@ window.addEventListener('DOMContentLoaded', () => {
          }
          return { timeRemaining, hours, minutes, seconds };
       };
+
       const addZero = elem => {
          if (String(elem).length === 1) { return '0' + elem; } else { return String(elem); }
       };
@@ -38,5 +39,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
       idInterval = setInterval(updateClock, 1000);
    };
+
    countTimer('10 june 2021');
 });
