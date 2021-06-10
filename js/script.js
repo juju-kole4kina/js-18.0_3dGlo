@@ -39,6 +39,72 @@ window.addEventListener('DOMContentLoaded', () => {
 
       idInterval = setInterval(updateClock, 1000);
    };
+   countTimer('10 july 2021');
 
-   countTimer('10 june 2021');
+   //Menu
+   const toggleMenu = () => {
+      const btnMenu = document.querySelector('.menu'),
+         menu = document.querySelector('menu'),
+         closeBtn = document.querySelector('.close-btn'),
+         menuItems = menu.querySelectorAll('ul>li');
+
+      const handlerMenu = () => {
+         // if (!menu.style.transform || menu.style.transform === `translate(-100%)`) {
+         //    menu.style.transform = `translate(0)`;
+         // } else {
+         //    menu.style.transform = `translate(-100%)`;
+         // }
+         menu.classList.toggle('active-menu');
+      };
+
+      btnMenu.addEventListener('click', handlerMenu);
+      closeBtn.addEventListener('click', handlerMenu);
+
+      // for (let i = 0; i < menuItems.length; i++) {
+      //    menuItems[i].addEventListener('click', handlerMenu);
+      // }
+
+      menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
+   };
+
+   toggleMenu();
 });
+
+//Popup
+
+const togglePopup = () => {
+   const popup = document.querySelector('.popup'),
+      popupBtn = document.querySelectorAll('.popup-btn'),
+      popUpClose = document.querySelector('.popup-close'),
+      popupContent = document.querySelector('.popup-content'),
+      popupData = { count: -455, speed: 3, startPos: -455, endPos: 0 };
+
+   const showPopup = () => {
+      popupData.startPos > popupData.endPos ?
+         popupData.count -= popupData.speed :
+         popupData.count += popupData.speed;
+      popupContent.style.transform = `translateY(${popupData.count}px)`;
+
+      if (popupData.startPos > popupData.endPos ?
+         popupData.count > popupData.endPos :
+         popupData.count < popupData.endPos) {
+         requestAnimationFrame(showPopup);
+      }
+   };
+
+   popupBtn.forEach((elem) => {
+      elem.addEventListener('click', () => {
+         popup.style.display = 'block';
+         if (screen.width > 786) {
+            popupData.count = popupData.startPos;
+            requestAnimationFrame(showPopup);
+         }
+      });
+   });
+
+   popUpClose.addEventListener('click', () => {
+      popup.style.display = 'none';
+   });
+};
+
+togglePopup();
