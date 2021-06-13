@@ -49,7 +49,7 @@ window.addEventListener('DOMContentLoaded', () => {
       // closeBtn = document.querySelector('.close-btn'),
       // menuItems = menu.querySelectorAll('ul>li');
 
-      const handlerMenu = () => {
+      const handlerMenu = (event) => {
          const target = event.target;
          if (target.closest('.menu')) {
             menu.classList.toggle('active-menu');
@@ -71,7 +71,7 @@ window.addEventListener('DOMContentLoaded', () => {
          popupBtn = document.querySelectorAll('.popup-btn'),
          // popUpClose = document.querySelector('.popup-close'),
          popupContent = document.querySelector('.popup-content'),
-         popupData = { count: -455, speed: 3, startPos: -455, endPos: 0 };
+         popupData = { count: -455, speed: 15, startPos: -455, endPos: 0 };
 
       const showPopup = () => {
          popupData.startPos > popupData.endPos ?
