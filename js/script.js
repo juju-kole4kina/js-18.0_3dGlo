@@ -46,8 +46,6 @@ window.addEventListener('DOMContentLoaded', () => {
    const toggleMenu = () => {
       const btnMenu = document.querySelector('.menu'),
          menu = document.querySelector('menu');
-      // closeBtn = document.querySelector('.close-btn'),
-      // menuItems = menu.querySelectorAll('ul>li');
 
       const handlerMenu = (event) => {
          const target = event.target;
@@ -59,9 +57,7 @@ window.addEventListener('DOMContentLoaded', () => {
       };
 
       btnMenu.addEventListener('click', handlerMenu);
-      // closeBtn.addEventListener('click', handlerMenu);
       menu.addEventListener('click', handlerMenu);
-      // menuItems.forEach((elem) => elem.addEventListener('click', handlerMenu));
    };
 
    //Popup
@@ -69,7 +65,6 @@ window.addEventListener('DOMContentLoaded', () => {
    const togglePopup = () => {
       const popup = document.querySelector('.popup'),
          popupBtn = document.querySelectorAll('.popup-btn'),
-         // popUpClose = document.querySelector('.popup-close'),
          popupContent = document.querySelector('.popup-content'),
          popupData = { count: -455, speed: 15, startPos: -455, endPos: 0 };
 
@@ -249,11 +244,70 @@ window.addEventListener('DOMContentLoaded', () => {
       portfolioDots.children[0].classList.add('dot-active');
    };
 
+   const setCommandImg = () => {
+      const command = document.querySelector('#command .row');
+
+      const changingPhotos = (event) => {
+         const target = event.target;
+
+         if (target.classList.contains('command__photo')) {
+            const lastSrc = target.src;
+
+            target.src = target.dataset.img;
+            target.dataset.img = lastSrc;
+         }
+      };
+
+      command.addEventListener('mouseover', changingPhotos);
+      command.addEventListener('mouseout', changingPhotos);
+   };
+
+   const checkInput = () => {
+      const calcBlock = document.querySelector('.calc-block'),
+         inputName = document.querySelector('#form2-name'),
+         inputEmail = document.querySelector('#form2-email'),
+         inputPhone = document.querySelector('#form2-phone'),
+         inputMessage = document.querySelector('#form2-message');
+
+      calcBlock.addEventListener('input', (event) => {
+         event.target.value = event.target.value.replace(/[^\d]/g, '');
+      });
+
+      inputName.addEventListener('blur', (event) => {
+         event.target.value = event.target.value.replace(/[^а-я ]/gi, '');
+         event.target.value = event.target.value.replace(/\S/g, (b) => b.toLowerCase());
+         event.target.value = event.target.value.replace(/(^|\s)\S/g, (a) => a.toUpperCase());
+         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+
+      });
+
+      inputPhone.addEventListener('blur', (event) => {
+         event.target.value = event.target.value.replace(/[^()-\d]/g, '');
+         event.target.value = event.target.value.replace(/-+/g, '-');
+         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+      });
+
+      inputMessage.addEventListener('blur', (event) => {
+         event.target.value = event.target.value.replace(/[^\dа-я-]/gi, '');
+         event.target.value = event.target.value.replace(/-+/g, '-');
+         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+      });
+
+      inputEmail.addEventListener('blur', (event) => {
+         event.target.value = event.target.value.replace(/[^a-z0-9[@_.!~*'-]]/gi, '');
+         event.target.value = event.target.value.replace(/-+/g, '-');
+         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+
+      });
+   };
+
    countTimer('10 july 2021');
    toggleMenu();
    togglePopup();
    tabs();
    addDot();
+   setCommandImg();
+   checkInput();
    slider();
 });
 
