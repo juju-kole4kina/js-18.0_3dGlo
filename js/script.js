@@ -264,41 +264,53 @@ window.addEventListener('DOMContentLoaded', () => {
 
    const checkInput = () => {
       const calcBlock = document.querySelector('.calc-block'),
-         inputName = document.querySelector('#form2-name'),
-         inputEmail = document.querySelector('#form2-email'),
-         inputPhone = document.querySelector('#form2-phone'),
-         inputMessage = document.querySelector('#form2-message');
+         inputName = document.querySelectorAll('.form-name'),
+         inputEmail = document.querySelectorAll('.form-email'),
+         inputPhone = document.querySelectorAll('.form-phone'),
+         inputMessage = document.querySelectorAll('.form-message');
 
       calcBlock.addEventListener('input', (event) => {
          event.target.value = event.target.value.replace(/[^\d]/g, '');
       });
 
-      inputName.addEventListener('blur', (event) => {
-         event.target.value = event.target.value.replace(/[^а-я ]/gi, '');
-         event.target.value = event.target.value.replace(/\S/g, (b) => b.toLowerCase());
-         event.target.value = event.target.value.replace(/(^|\s)\S/g, (a) => a.toUpperCase());
-         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+      inputName.forEach((elem) => {
+         elem.addEventListener('blur', (event) => {
+            event.target.value = event.target.value.replace(/[^а-я ]/gi, '');
+            event.target.value = event.target.value.replace(/\S/g, (b) => b.toLowerCase());
+            event.target.value = event.target.value.replace(/(^|\s)\S/g, (a) => a.toUpperCase());
+            event.target.value = event.target.value.replace(/ +/g, ' ').trim();
 
+         });
       });
 
-      inputPhone.addEventListener('blur', (event) => {
-         event.target.value = event.target.value.replace(/[^()-\d]/g, '');
-         event.target.value = event.target.value.replace(/-+/g, '-');
-         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+
+      inputPhone.forEach((elem) => {
+         elem.addEventListener('blur', (event) => {
+            event.target.value = event.target.value.replace(/[^()-\d]/g, '');
+            event.target.value = event.target.value.replace(/-+/g, '-');
+            event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+         });
       });
 
-      inputMessage.addEventListener('blur', (event) => {
-         event.target.value = event.target.value.replace(/[^\dа-я-]/gi, '');
-         event.target.value = event.target.value.replace(/-+/g, '-');
-         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+
+      inputMessage.forEach((elem) => {
+         elem.addEventListener('blur', (event) => {
+            event.target.value = event.target.value.replace(/[^\dа-я-]/gi, '');
+            event.target.value = event.target.value.replace(/-+/g, '-');
+            event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+         });
       });
 
-      inputEmail.addEventListener('blur', (event) => {
-         event.target.value = event.target.value.replace(/[^a-z0-9[@_.!~*'-]]/gi, '');
-         event.target.value = event.target.value.replace(/-+/g, '-');
-         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
 
+      inputEmail.forEach((elem) => {
+         elem.addEventListener('blur', (event) => {
+            event.target.value = event.target.value.replace(/[^a-z0-9[@_.!~*'-]]/gi, '');
+            event.target.value = event.target.value.replace(/-+/g, '-');
+            event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+
+         });
       });
+
    };
 
    countTimer('10 july 2021');
