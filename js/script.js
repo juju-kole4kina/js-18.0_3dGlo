@@ -273,17 +273,18 @@ window.addEventListener('DOMContentLoaded', () => {
          inputPhone = document.querySelector('#form2-phone'),
          inputMessage = document.querySelector('#form2-message');
 
-      // calcBlock.addEventListener('input', (event) => {
-      //    event.target.value = event.target.value.replace(/[^\d]/g, '');
-      // });
-
-      inputName.addEventListener('blur', (event) => {
-         event.target.value = event.target.value.replace(/[^а-я ]/gi, '');
-         event.target.value = event.target.value.replace(/\S/g, (b) => b.toLowerCase());
-         event.target.value = event.target.value.replace(/(^|\s)\S/g, (a) => a.toUpperCase());
-         event.target.value = event.target.value.replace(/ +/g, ' ').trim();
-
+      calcBlock.addEventListener('input', (event) => {
+         event.target.value = event.target.value.replace(/[^\d\.]/g, '');
       });
+
+      inputName.forEach((elem) => {
+         elem.addEventListener('blur', (event) => {
+            event.target.value = event.target.value.replace(/[^а-я ]/gi, '');
+            event.target.value = event.target.value.replace(/\S/g, (b) => b.toLowerCase());
+            event.target.value = event.target.value.replace(/(^|\s)\S/g, (a) => a.toUpperCase());
+            event.target.value = event.target.value.replace(/ +/g, ' ').trim();
+         });
+      })
 
       inputPhone.addEventListener('blur', (event) => {
          event.target.value = event.target.value.replace(/[^()-\d]/g, '');
